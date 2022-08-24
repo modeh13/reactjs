@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReactJs - Hello Component</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+</head>
+<body>
+    <div id="container-1"></div>
+    <div id="container-2"></div>
+    <script type="text/javascript">
+        const reactRoot = ReactDOM.createRoot(document.getElementById('container-2'));
+        const render = () => {
+            document.getElementById('container-1').innerHTML = `
+                <div>
+                    Hello HTML
+                    <input />
+                    <pre>                        
+                        ${new Date().toLocaleTimeString()}
+                    </pre>
+                </div>
+            `;
+
+            reactRoot.render(
+                React.createElement('div', null, 
+                    'Hello Reack',
+                    React.createElement('input', null),
+                    React.createElement('pre', null, new Date().toLocaleTimeString())
+                )
+            );
+        };
+
+        setInterval(render, 1000);
+    </script>
+</body>
+</html>
