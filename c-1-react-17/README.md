@@ -243,7 +243,7 @@ const [...newArray] = [1, 2, 3, 4];
 const { ...person } = {};
 ```
 
-# Module 4 - The GitHub cards app
+# Module 5
 
 ## Move Scripts sections to main README file
 
