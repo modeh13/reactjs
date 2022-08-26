@@ -141,7 +141,109 @@ const [currentStateValue, functionToSetNewStateValue] =
   useState(initialStateValue);
 ```
 
-# Module 3 - Modern Javascript Crash Course
+## Modern JavaScript
+
+### DataTypes
+
+- Number
+- String
+- Boolean
+- Array
+- Object
+
+ECMAScript 2015 (ECMAScript 6)
+
+### Block and Functions Scopes
+
+```javascript
+{
+  // Block scope
+}
+function sum(a, b) {
+  // Function scope
+  // Call stack
+}
+```
+
+### const keyword
+
+- String data type is inmutable by default in JavaScript
+- Using **const** keyword ensures value and reference are inmutable for scalar values.
+- Using **const** keyword on Arrays or Objects just guarantees the reference will be the same, and cannot be changed. However, Array itemas can be modified as well as Object properties.
+
+```javascript
+const answer = 42;
+const greeting = "Hello!";
+
+const numbers = [1, 2, 3, 4];
+const person = {
+  firstName: "John",
+  lastName: "Snow",
+};
+```
+
+### Arraw functions
+
+Regular functions give access to "calling" enviroment while Arraw functions give access to their "defining" environment.
+
+```javascript
+function sum(a, b) {
+  // "this" here is the caller of sum.
+}
+const sum = function (a, b) {
+  // "this" here is the caller of sum.
+};
+
+// Arraw function
+const sum = (a, b) => {
+  // Here, "this" is not the caller of sum.
+  // It's the same "this" found in sum's scope.
+};
+```
+
+### Destructing
+
+```javascript
+const Math = {
+  PI: 3.1416,
+  E: 1,12,
+  SQRT: 45
+}
+
+// 1. Destructing Object's properties
+const {PI, E, SQRT} = Math;
+const {Component, Fragment, useState} = require("react");
+
+// 2. Destructing when invoking functions
+const circle = {
+  label: "circleX",
+  radius: 10
+};
+
+// Function definition basically says.
+// Parameter expects an object with a radius property
+// Second argument is option {}, and uses a default value of 2.
+const circleArea = ({radius}, {precision: 2} = {}) => {
+  return (Math.PI * radius * radius).toFixed(precision);
+};
+
+circleArea(circle, {precision: 5});
+
+// 3. Destrucing Arrays
+const [first, second, , forth] = [1, 2, 3, 4];
+```
+
+### Rest operator
+
+In the example, we are asking JavaScript to destruct **first** item, and create a new Array (**restOfItems**) containing the rest of elements.
+
+```javascript
+const [first, ...restOfItems] = [1, 2, 3, 4];
+const [...newArray] = [1, 2, 3, 4];
+const { ...person } = {};
+```
+
+# Module 4 - The GitHub cards app
 
 ## Move Scripts sections to main README file
 
