@@ -1,5 +1,9 @@
 import React from "react";
 
+/**
+ * CardForm component using 'state', and handerl to update it.
+ * That is known as Controlled Components.
+ */
 export default class CardForm extends React.Component {
    constructor(props) {
       super(props);

@@ -12,10 +12,9 @@ export default class App extends React.Component {
    }
 
    onCardFormSubmitHandler = (profileData) => {
-      console.log(profileData);
-      this.setState(prevState => {
-         return { profiles: [...prevState.profiles, profileData] }
-      });
+      this.setState(prevState => ({
+         profiles: [...prevState.profiles, profileData]
+      }));
    }
 
    render() {
