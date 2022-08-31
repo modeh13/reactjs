@@ -243,7 +243,7 @@ const [...newArray] = [1, 2, 3, 4];
 const { ...person } = {};
 ```
 
-# Module 5
+# Module 5 (Behavior Functions...)
 
 ## Move Scripts sections to main README file
 
