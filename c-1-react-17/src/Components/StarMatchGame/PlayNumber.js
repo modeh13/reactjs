@@ -10,11 +10,10 @@ const colors = {
 export default class PlayNumber extends React.Component {
     constructor(props) {
         super(props);
+        console.log(this.props.number);
     }
 
-    onClickHandler = (evt) => {
-        console.log('PlayNumber', this.props.number);
-    }
+    onClickHandler = () => this.props.onClick(this.props.number, this.props.status);
 
     render() {
         return (

@@ -136,9 +136,26 @@ React.createElement(element, attributes, childElements);
 
 ### React Hooks
 
+### useState
+Functions that returns two elements: currentStateValue, and a function to update state value.
+It also receives one parameter. The initialStateValue.
+
 ```javascript
 const [currentStateValue, functionToSetNewStateValue] =
   useState(initialStateValue);
+```
+
+### useEffect
+This Reack Hook will be invoked every time the owner Component is rendered. It receives a Callback function to be executed.
+```javascript
+useEffect(callbackFn);
+useEffect(() => {
+  // Function invokes every time component is updated and rendered.
+
+  // Returned functions is useful to invoke logic before useEffect gets called.
+  // It is usually needed to clean side effects up.
+  return () => console.log('Component is going to be rendered');
+});
 ```
 
 ## Modern JavaScript
@@ -243,7 +260,7 @@ const [...newArray] = [1, 2, 3, 4];
 const { ...person } = {};
 ```
 
-# Module 5 (Behavior Functions...)
+# Module 5 (Unmounting...)
 
 ## Move Scripts sections to main README file
 
