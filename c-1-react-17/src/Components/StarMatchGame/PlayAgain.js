@@ -2,7 +2,7 @@ import React from "react";
 
 function PlayAgain(props) {
     return (
-        <div>
+        <div className="play-again">
             <div className="message"
                 style={{color: props.gameStatus === 'won' ? 'green' : 'red' }}>
                 {props.gameStatus === 'won' ? 'Nice!': 'Game Over!'}

@@ -260,7 +260,7 @@ const [...newArray] = [1, 2, 3, 4];
 const { ...person } = {};
 ```
 
-# Module 5 (Unmounting...)
+# Module 6 (Setting Up a Development Environment...)
 
 ## Move Scripts sections to main README file
 
