@@ -2,6 +2,8 @@
 
 ### Setup from scratch
 
+Reference: https://jscomplete.com/learn/1rd-reactful
+
 1. Initialize npm project. Use command to add package.json file.
 
 ```batch
