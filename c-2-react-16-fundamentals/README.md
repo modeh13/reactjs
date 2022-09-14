@@ -72,3 +72,17 @@ function Component(props) {
   return <div>{props.children}</div>;
 }
 ```
+
+## Events
+
+DOM events are defined by each Browser. Browsers have similar events on their way. To not worry about each specific event by Browser.
+React exposes its own version of events named _Synthetic Events_. It's an implementation that abstracts DOM events definitions.
+A **synthetic event object** is passed down to the Handler.
+
+```javascript
+const clickHandler = (synthEvent) => {
+  console.log(synthEvent);
+};
+```
+
+## GR - 4. JSX - The AuthorQuiz

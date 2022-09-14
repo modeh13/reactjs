@@ -9,10 +9,10 @@
   },
   "author": "German A. Ramirez",
   "license": "MIT",
-  "dependencies": {    
+  "dependencies": {
     "@types/node": "^18.7.16",
     "@types/react": "^18.0.19",
-    "@types/react-dom": "^18.0.6",
+    "@types/react-dom": "^18.0.6",    
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^4.8.3"
@@ -22,8 +22,8 @@
     "@babel/preset-env": "^7.19.0",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
-    "@types/jest": "^29.0.0",
     "@testing-library/react": "^13.4.0",
+    "@types/jest": "^29.0.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^29.0.3",
     "babel-loader": "^8.2.5",
