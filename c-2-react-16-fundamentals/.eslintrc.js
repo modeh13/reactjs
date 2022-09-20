@@ -1,5 +1,5 @@
 module.exports = {
-   parser: "babel-eslint",
+   parser: "@babel/eslint-parser",
    env: {
       browser: true,
       commonjs: true,
@@ -29,6 +29,7 @@ module.exports = {
    rules: {
       "react/prop-types": "off",
       "react/react-in-jsx-scope": "off",
+      "@typescript-eslint/no-unused-vars": "off"
 
       // You can do more rule customizations here...
    },

@@ -11,7 +11,7 @@ npm install --save-dev @wojtekmaj/enzyme-adapter-react-17
 
 ### Using prop-types
 
-React includes a package named 'prop-types'. It offers a manner to validat **props** at runtime.
+React includes a package named 'prop-types'. It offers a manner to validate **props** at runtime.
 It has different helpers to validate properties.
 
 ```javascript
@@ -62,8 +62,8 @@ React.createElement("h1", null, React.createElement(Component, { a: 5 }, null));
 
 ```jsx
 <Component>
-   <Child1>
-   <Child2>
+   <Child1 />
+   <Child2 />
 </Component>
 ```
 
@@ -85,4 +85,34 @@ const clickHandler = (synthEvent) => {
 };
 ```
 
-## GR - 4. JSX - The AuthorQuiz
+## Forms
+
+React does not provide a built-in implementation for validating Forms, so you can develop your own solution if you want to have more control.
+In case, you do not care about on how Form is validated. You can use a npm package. There is a popular one called _React JSON Schema Form_.
+When an HTML Form input element is defined within a React Component. Its value needs to be treated by an event handler which will have to update
+the component state.
+
+## React Routing
+
+Client-Side routing. It is achieved by **React Router**. It allows to render components, and refreshing app content without sending a request to the Server.
+It has some disadvantages, but it's suitable when Page does not need to be searchable. This approach most likely implements **pushState** to update
+Browser URL, and detect any change on it.
+
+```jsx
+// It does support parameters
+<BrowserRouter>
+    <Route exact path="/" component={Welcome} />
+    <Route exact path="/about" component={About} />
+    <Route path="/single:id" component={Single} />
+</BrowserRouter>
+
+function Single({match}) {
+    return <div>{match.params.id}</div>
+}
+```
+
+Server-Side routing. It implies to completely render Components from a Server-Side application. It usually takes NodeJs characteristics to expose
+a server that is responsible to process each URL request.
+
+
+## GR - 6. Forms - Adding Routes to the Author
