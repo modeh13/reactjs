@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import AuthorQuiz from "./Components/AuthorQuiz/AuthorQuiz";
+import App from "./Components/AuthorQuiz/App";
 
 const rootElement = document.getElementById('app') as HTMLElement;
 const root = ReactDOM.createRoot(rootElement);
 
-root.render(<AuthorQuiz />);
+root.render(<App/>);

@@ -24,24 +24,17 @@ function getTurnData() {
 const AuthorQuiz = () => {
    const [turnData, setTurnData] = useState(getTurnData());
    const answerSelectedHandler = (answer: string) => {
-      console.log(turnData.author.books, answer)
-      if (turnData.author.books.includes(answer)) {
-         setTurnData(currentValue => ({ ...currentValue, highlight: "correct" }));
-      }
-      else {
-         setTurnData(currentValue => ({ ...currentValue, highlight: "wrong" }));
-      }
+      const highlight = turnData.author.books.includes(answer) ? "correct" : "wrong";
+
+      setTurnData(currentValue => ({ ...currentValue, highlight: highlight }));
    };
 
    return (
-      <React.Fragment>
-         <NavBar />
-         <div id="app-main" className="container-fluid" style={{paddingTop: '60px'}}>
-            <Hero />
-            <Turn {...turnData} onAnswerSelected={answerSelectedHandler} />
-            <Continue />
-         </div>
-      </React.Fragment>
+      <div id="app-main" className="container-fluid">
+         <Hero />
+         <Turn {...turnData} onAnswerSelected={answerSelectedHandler} />
+         <Continue />
+      </div>
    );
 };
 

@@ -114,5 +114,21 @@ function Single({match}) {
 Server-Side routing. It implies to completely render Components from a Server-Side application. It usually takes NodeJs characteristics to expose
 a server that is responsible to process each URL request.
 
+## Refs
 
-## GR - 6. Forms - Adding Routes to the Author
+It's the way of accessing DOM elements. Ref elements must be accessible from **componentDidMount** since it's only until Component is rendered
+where DOM elements are available.
+
+```jsx
+class Component {
+  constructor(){
+    this.myDiv = React.createRef();
+  } 
+  
+  render() {
+    return (<div ref={this.myDiv}></div>);
+  }
+}
+```
+
+## GR - 6. Forms - Adding a Form to the Author 10:00
