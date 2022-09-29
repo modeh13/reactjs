@@ -25,7 +25,7 @@
           const time = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
           const buttonLabel = viewModel.running ? 'Stop' : 'Start';
           const onClickHandler = (evt) => {
-            model = reducer(viewModel, viewModel.running ? intents.STOP : intents.START);
+            container.dispatch(viewModel.running ? intents.STOP : intents.START);
           };
 
           return React.createElement('div', null,
@@ -51,15 +51,31 @@
           return actions[intent](model);
         };
 
-        const render = () => {
-          reactRoot.render(view(model));
+        const createContainer = (reducerFunc, initialState = {}) => {
+          let state = initialState;
+          const subscribers = [];
+          return {
+            getState: () => state,
+            dispatch: (intent) => {
+              state = reducerFunc(state, intent);
+              subscribers.forEach(subscriber => subscriber());
+            },
+            subscribe: (handler) => {
+              subscribers.push(handler);
+            }
+          };
         };
 
+        const render = () => {
+          reactRoot.render(view(container.getState()));
+        };
+
+        const container = createContainer(reducer, model);
+        container.subscribe(render);
         render();
 
         setInterval(() => {
-          model = reducer(model, intents.TICK);
-          render()
+          container.dispatch(intents.TICK);
         }, 1000);
     </script>
 </body>

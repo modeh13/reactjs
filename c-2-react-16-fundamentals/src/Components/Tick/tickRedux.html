@@ -7,6 +7,10 @@
     <title>ReactJs - Tick Component</title>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin="anonymous"
+            src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
+            integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
+            referrerpolicy="no-referrer"></script>
 </head>
 <body>
     <div id="container"></div>
@@ -25,7 +29,7 @@
           const time = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
           const buttonLabel = viewModel.running ? 'Stop' : 'Start';
           const onClickHandler = (evt) => {
-            container.dispatch(viewModel.running ? intents.STOP : intents.START);
+            container.dispatch(viewModel.running ? {type: actionTypes.STOP} : {type: actionTypes.START});
           };
 
           return React.createElement('div', null,
@@ -35,47 +39,32 @@
           );
         };
 
-        const intents = {
+        const actionTypes = {
           TICK: 'TICK',
           START: 'START',
           STOP: 'STOP'
         };
 
-        const reducer = (model, intent) => {
+        const reducer = (model, action) => {
           const actions = {
             'TICK': (model) => Object.assign(model, {seconds: model.seconds + (model.running ? 1 : 0)}),
             'START': (model) => Object.assign(model, {running: true}),
             'STOP': (model) => Object.assign(model, {running: false})
           };
 
-          return actions[intent](model);
-        };
-
-        const createContainer = (initialState = {}, reducerFunc) => {
-          let state = initialState;
-          const subscribers = [];
-          return {
-            getState: () => state,
-            dispatch: (intent) => {
-              state = reducerFunc(state, intent);
-              subscribers.forEach(subscriber => subscriber());
-            },
-            subscribe: (handler) => {
-              subscribers.push(handler);
-            }
-          };
+          return (actions[action.type] || (() => model))(model);
         };
 
         const render = () => {
           reactRoot.render(view(container.getState()));
         };
 
-        const container = createContainer(model, reducer);
+        const container = Redux.createStore(reducer, model);
         container.subscribe(render);
         render();
 
         setInterval(() => {
-          container.dispatch(intents.TICK);
+          container.dispatch({type: actionTypes.TICK});
         }, 1000);
     </script>
 </body>
