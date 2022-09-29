@@ -131,4 +131,11 @@ class Component {
 }
 ```
 
+## State
+
+### MVI - Model-View-Intent
+
+Model stores Component state. View describes UI based on Model.
+Intent refers to User "intentions" or actions tha may affect or update the state.
+
 ## GR - 6. Forms - Adding a Form to the Author 10:00

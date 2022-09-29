@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReactJs - Tick Component</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+</head>
+<body>
+    <div id="container"></div>
+    <script type="text/javascript">
+        const reactRoot = ReactDOM.createRoot(document.getElementById('container'));
+
+        let model = {
+          seconds: 0,
+          running: false
+        };
+
+        const view = (viewModel) => {
+          const numberOfSeconds = 60;
+          const minutes = Math.trunc(viewModel.seconds / numberOfSeconds);
+          const seconds = Math.trunc(((viewModel.seconds / numberOfSeconds) - Math.floor(viewModel.seconds / numberOfSeconds)) * numberOfSeconds);
+          const time = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+          const buttonLabel = viewModel.running ? 'Stop' : 'Start';
+          const onClickHandler = (evt) => {
+            model = reducer(viewModel, viewModel.running ? intents.STOP : intents.START);
+          };
+
+          return React.createElement('div', null,
+            React.createElement('h1', null, 'Tick Component'),
+            React.createElement('p', null, time),
+            React.createElement('input', {type: "button", value: buttonLabel, onClick: onClickHandler }, null)
+          );
+        };
+
+        const intents = {
+          TICK: 'TICK',
+          START: 'START',
+          STOP: 'STOP'
+        };
+
+        const reducer = (model, intent) => {
+          const actions = {
+            'TICK': (model) => Object.assign(model, {seconds: model.seconds + (model.running ? 1 : 0)}),
+            'START': (model) => Object.assign(model, {running: true}),
+            'STOP': (model) => Object.assign(model, {running: false})
+          };
+
+          return actions[intent](model);
+        };
+
+        const render = () => {
+          reactRoot.render(view(model));
+        };
+
+        render();
+
+        setInterval(() => {
+          model = reducer(model, intents.TICK);
+          render()
+        }, 1000);
+    </script>
+</body>
+</html>
