@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReactJs - Tick Component</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin="anonymous"
+            src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
+            integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
+            referrerpolicy="no-referrer">
+    </script>
+    <script crossorigin="anonymous"
+            src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/8.0.4/react-redux.min.js"
+            integrity="sha512-Vhrd0FFt2WqbwkMmfOHRax4CDMGHJPLtcXcKnKuAxcUSnfiZ576tM4YrkQ3EbuQbnyOSBeCaMFSnrPlNSctq4g=="
+            referrerpolicy="no-referrer">
+    </script>
+</head>
+<body>
+    <div id="container"></div>
+    <script type="text/javascript">
+        const reactRoot = ReactDOM.createRoot(document.getElementById('container'));
+
+        let model = {
+          seconds: 0,
+          running: false
+        };
+
+        function mapStateToProps(state) {
+          return state;
+        }
+
+        function mapDispatchToProps(dispatch) {
+          return {
+            onStart: () => dispatch({type: actionTypes.START}),
+            onStop: () => dispatch({type: actionTypes.STOP})
+          };
+        }
+
+        // view represents a React Component
+        // Redux
+        const Stopwatch = ReactRedux.connect(mapStateToProps, mapDispatchToProps)((props) => {
+          const numberOfSeconds = 60;
+          const minutes = Math.trunc(props.seconds / numberOfSeconds);
+          const seconds = Math.trunc(((props.seconds / numberOfSeconds) - Math.floor(props.seconds / numberOfSeconds)) * numberOfSeconds);
+          const time = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+          const buttonLabel = props.running ? 'Stop' : 'Start';
+          const onClickHandler = (evt) => props.running ? props.onStop() : props.onStart();
+
+          return React.createElement('div', null,
+            React.createElement('h1', null, 'Tick Component'),
+            React.createElement('p', null, time),
+            React.createElement('input', {type: "button", value: buttonLabel, onClick: onClickHandler }, null)
+          );
+        });
+
+        const actionTypes = {
+          TICK: 'TICK',
+          START: 'START',
+          STOP: 'STOP'
+        };
+
+        const reducer = (model, action) => {
+          const actions = {
+            'TICK': (model) => Object.assign({}, model, {seconds: model.seconds + (model.running ? 1 : 0)}),
+            'START': (model) => Object.assign({}, model, {running: true}),
+            'STOP': (model) => Object.assign({}, model, {running: false})
+          };
+
+          return (actions[action.type] || (() => model))(model);
+        };
+
+        const container = Redux.createStore(reducer, model);
+
+        reactRoot.render(
+          React.createElement(ReactRedux.Provider, {store: container},
+            React.createElement(Stopwatch, null)
+          )
+        );
+
+        setInterval(() => {
+          container.dispatch({type: actionTypes.TICK});
+        }, 1000);
+    </script>
+</body>
+</html>

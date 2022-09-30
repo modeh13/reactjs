@@ -135,7 +135,46 @@ class Component {
 
 ### MVI - Model-View-Intent
 
-Model stores Component state. View describes UI based on Model.
+Model stores Component state. 
+View describes UI based on Model.
 Intent refers to User "intentions" or actions tha may affect or update the state.
+
+### Custom State Container
+````typescript
+const container = createContainer(reducer, state);
+const createContainer = (reducer, initialState = {}) => {
+   return {
+      getState: () => state,
+      dispatch: (action) => {
+         state = reducer(state, action);
+      },
+      subscribe: () => handler.forEach(handler => handler())
+   }
+}
+````
+
+### Redux
+
+````typescript
+const store = Redux.createStore(reducer, state);
+store.getState();
+store.subscribe(() => { });
+
+const action = {
+   type: '@actionType',
+   // Other properties
+};
+
+store.dispatch(action);
+````
+
+### React-Redux
+
+- Provider: It's a React-Redux component that wraps other components as children. Children components will have access to store and state.
+- connect: It's a function that receives two functions. It returns other function that expects as argument a React Component.
+    - mapStateToProps: It's a function from Redux to set props to a Component. It takes care of getting data from store to Component.
+    - mapDispatchToProps: It's also a function from Redux that takes care of sending/exposing actions from Component to store.
+    in summary. This function provides a way to map Component's events to actions for Redux store.
+    It sends throughout Component **props** a way to dispatch actions. 
 
 ## GR - 6. Forms - Adding a Form to the Author 10:00
