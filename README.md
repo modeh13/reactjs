@@ -13,19 +13,17 @@
 - **nvm**: Node Version Manager. It is a tool that allows installing and managing different verions of Node.
 
 ### Project mapping table
-| Course | Project name |
-|---|---|
-|[C-1](#c-1)| c-1-demo-app|
+| Course       | Project name              |
+|--------------|---------------------------|
+| [C-1](#c-1)  | c-1-react-17              |
+| [C-2](#c-2)  | c-2-react-16-fundamentals |
+| [C-3](#c-3)  | c-3-react-17-hooks        |
+| [C-4](#c-4) | c-4-TBD                   |
 
-## Building React Apps with Typescript (Pluralsight)
-
-### C-1 Configuring Typescript in a React application
-```bash
-npx create-react-app [app-name] --template typescript
-npm start (Starts the development server)
-npm run build (Bundles the app into static files for production)
-npm test (Starts the test runner)
-```
+## C-1 React 17 - Getting Started (Pluralsight)
+## C-2 React 16 - Fundamentals (Pluralsight)
+## C-3 React 17 - Hooks (Pluralsight)
+## C-4 Building React Apps with Typescript (Pluralsight)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
