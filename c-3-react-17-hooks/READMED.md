@@ -9,5 +9,27 @@ Most common React Hooks:
 - useRef: Primarily used to allow access directly to an element in the DOM.
 - useEffect
 
+### useEffect
+It's a function that can be used to emulate React Life Cycle Events on Class Components:
 
-### 2 - Learning How to use the useEffect React Hook
+| Class Component      | Function Component                  |
+|----------------------|-------------------------------------|
+| componentDidMount    | useEffect(() => {})                 |
+| componentDidUpdate   | useEffect(() => {})                 |
+| componentWillUnmount | useEffect(() => { return () => {}}) |
+
+**dependencies**: It refers to component states. Any change of dependencies values will trigger useEffect function.
+```javascript
+useEffect(() => {
+  
+}, [dependencies]);
+```
+**Passing down an empty array as second parameter of useEffect function. That will indicate to useEffect to be executed 
+only when Component first rendered**
+```javascript
+useEffect(() => {
+  
+}, []);
+```
+
+### Module 3
