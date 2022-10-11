@@ -33,3 +33,12 @@ useEffect(() => {
 ```
 
 ### Module 3
+
+React Hooks can only be used on React Functional Components, and need to be defined at top level.
+As recommendation, you can install "eslint-plugin-react-hooks" package to identify code errors.
+
+More coming React Hooks:
+- useContext
+- useReducer
+
+### Building out the Conference Speaker page
