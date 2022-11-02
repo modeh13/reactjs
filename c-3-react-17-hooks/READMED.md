@@ -41,4 +41,4 @@ More coming React Hooks:
 - useContext
 - useReducer
 
-### Building out the Conference Speaker page
+### Preparing React Context for Use
