@@ -72,7 +72,7 @@ module.exports = {
 A JavaScript library for building user interfaces. It's declarative for describe UIs.
 
 | Framework                  | Library |
-| -------------------------- | ------- |
+|----------------------------|---------|
 | Limited flexibility        | ---     |
 | Hard to deviate            | ---     |
 | Large and full of features | ---     |
@@ -94,7 +94,7 @@ A JavaScript library for building user interfaces. It's declarative for describe
   - Like functions.
   - Input: props, state.
   - Output: UI.
-  - Reausable and composable.
+  - Reusable and composable.
   - Can manage a private state.
   - Stateful.
 
@@ -102,7 +102,7 @@ A JavaScript library for building user interfaces. It's declarative for describe
 
   - Reflect changes to the browser. React will react updating part of DOM.
 
-- Virutal views in memory
+- Virtual views in memory
   - Generate HTML using JavaScript.
   - No HTML template language.
   - Tree reconciliation (Virtual DOM).
@@ -112,11 +112,11 @@ A JavaScript library for building user interfaces. It's declarative for describe
 - props
 
   - It represents inputs like HTML attributes.
-  - It is inmutable.
+  - It is immutable.
   - It represents fixed values.
 
 - state
-  - It representst the internal state of a Component.
+  - It represents the internal state of a Component.
   - It is mutable, and its value can change.
 
 ### React DOM API
@@ -148,7 +148,8 @@ const [currentStateValue, functionToSetNewStateValue] =
 ```
 
 ### useEffect
-This Reack Hook will be invoked every time the owner Component is rendered. It receives a Callback function to be executed.
+This React Hook will be invoked every time the owner Component is rendered. It receives a Callback function to be executed.
+
 ```javascript
 useEffect(callbackFn);
 useEffect(() => {
@@ -186,9 +187,9 @@ function sum(a, b) {
 
 ### const keyword
 
-- String data type is inmutable by default in JavaScript
-- Using **const** keyword ensures value and reference are inmutable for scalar values.
-- Using **const** keyword on Arrays or Objects just guarantees the reference will be the same, and cannot be changed. However, Array itemas can be modified as well as Object properties.
+- String data type is immutable by default in JavaScript
+- Using **const** keyword ensures value and reference are immutable for scalar values.
+- Using **const** keyword on Arrays or Objects just guarantees the reference will be the same, and cannot be changed. However, Array items can be modified as well as Object properties.
 
 ```javascript
 const answer = 42;
@@ -201,9 +202,9 @@ const person = {
 };
 ```
 
-### Arraw functions
+### Arrow functions
 
-Regular functions give access to "calling" enviroment while Arraw functions give access to their "defining" environment.
+Regular functions give access to "calling" environment while Arrow functions give access to their "defining" environment.
 
 ```javascript
 function sum(a, b) {
@@ -222,10 +223,10 @@ const sum = (a, b) => {
 
 ### Destructing
 
-```javascript
+```ecmascript 6
 const Math = {
   PI: 3.1416,
-  E: 1,12,
+  E: 1.12,
   SQRT: 45
 }
 
@@ -242,7 +243,7 @@ const circle = {
 // Function definition basically says.
 // Parameter expects an object with a radius property
 // Second argument is option {}, and uses a default value of 2.
-const circleArea = ({radius}, {precision: 2} = {}) => {
+const circleArea = ({radius}, {precision:2} = {}) => {
   return (Math.PI * radius * radius).toFixed(precision);
 };
 
@@ -261,6 +262,54 @@ const [first, ...restOfItems] = [1, 2, 3, 4];
 const [...newArray] = [1, 2, 3, 4];
 const { ...person } = {};
 ```
+## React Concepts
+
+### Props drilling
+
+It's like a problem when having a hierarchy of components, and need to pass down props to nested children components.
+Some Components will have access to data even when they don't care about it.
+We can implement or use like a centralized state management (**useContext**).
+
+### Controlled Components
+
+The value for HTML controls is managed by React and the Component state.
+It uses Events to update state values. 
+
+### Uncontrolled Components
+The Component delegates to the DOM how HTML controls update their values.
+It requires to use useRef() Hook or React.createRef().
+
+### Error Boundaries
+
+It's a mechanism to catch Component's errors during specific phases. It is a React Component.
+- Lifecycle component.
+- Constructor.
+- Render method.
+
+It can implement two methods static **getDerivedStateFromError()** and **componentDidCatch**.
+componentDidCatch is useful to log the error by sending to a service.
+
+### React styling
+
+- Inline style by providing a Javascript object.
+- JavaScript object pass as reference to style property.
+- CSS Stylesheet file.
+- CSS Module (.module.css)
+
+### Avoid rendering Components for performance improvements
+
+We must use **shouldComponentUpdate** method on Class Components.
+
+### Optimize React app performance
+
+- useMemo: It's used for caching CPU-Expensive functions.
+- React.PureComponent: From Class Components, instead of inheriting from React.Component.
+Using PureComponent allows to implement **shouldComponentUpdate**.
+
+### Higher Order Components HOC
+
+Higher Order Components are special components developed to create abstractions to reuse
+Components with similar functionality. It receives another Component and returns a new Component.
 
 # Module 6 (Setting Up a Development Environment...)
 
@@ -301,6 +350,6 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc.) right into your project, so you have full control over them. All the commands except `eject` will still work, but they will point to the copied scripts, so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However, we understand that this tool would not be useful if you could not customize it when you are ready for it.

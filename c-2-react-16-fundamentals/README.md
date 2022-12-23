@@ -2,10 +2,21 @@
 
 ## Configuring React app to support Typescript
 
+```batch
 npm install --save typescript @types/node @types/react @types/react-dom @types/jest
+```
+
+```batch
 npm i -D eslint babel-eslint eslint-plugin-react eslint-plugin-react-hooks
+```
+
+```batct
 npm i -D jest babel-jest react-test-renderer
+```
+
+```batch
 npm install --save-dev @wojtekmaj/enzyme-adapter-react-17
+```
 
 ## Props validations
 
@@ -24,7 +35,7 @@ Component.propTypes = {
 };
 ```
 
-### Using interface Typescript
+### Using Typescript interfaces
 
 ```typescript
 interface ComponentProps {
